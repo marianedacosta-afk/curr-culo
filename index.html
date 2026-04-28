@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Percy Jackson & Os Olimpianos - Herói do Acampamento Meio-Sangue</title>
+    <!-- Fontes e Estilos Globais -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #03050b 0%, #0b0e1a 100%);
+            font-family: 'Inter', sans-serif;
+            color: #ececff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Títulos estilo épico */
+        h1, h2, h3, .logo-text, .nav-links a, .cta-button, .card-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header / Navegação */
+        header {
+            background: rgba(2, 5, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid #ffd966;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #ffcd4a;
+            filter: drop-shadow(0 0 4px #ffb347);
+        }
+
+        .logo-text {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f3c682, #e6b422);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e4ff;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffcd4a;
+            text-shadow: 0 0 6px rgba(255,205,74,0.5);
+        }
+
+        /* Hero section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 10% 30%, rgba(0,20,40,0.7), rgba(0,0,0,0.9)), url('https://i.postimg.cc/BvQvYvfm/percy-wave.jpg') no-repeat center center/cover;
+            background-blend-mode: overlay;
+            border-bottom: 3px solid #ffd966;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding: 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 4px 4px 12px #00000070;
+        }
+
+        .hero h1 span {
+            color: #ffcd4a;
+            border-bottom: 3px solid #ffcd4a;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 25px 0;
+            color: #d9e2ff;
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.25s ease;
+            font-family: 'Cinzel', serif;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #ffcd4a;
+            color: #0a0f1f;
+            border: none;
+            box-shadow: 0 5px 15px rgba(255,205,74,0.3);
+        }
+
+        .btn-primary:hover {
+            background: #e6b422;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+            color: #000;
+        }
+
+        .btn-outline {
+            border: 2px solid #ffcd4a;
+            color: #ffcd4a;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #ffcd4a20;
+            transform: translateY(-3px);
+        }
+
+        /* Seção sobre / introdução */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #ffcd4a;
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .about-text p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #cfd8ff;
+        }
+
+        .about-img {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-img img {
+            max-width: 100%;
+            border-radius: 28px;
+            box-shadow: 0 25px 35px -12px black;
+            border: 1px solid #ffcd4a55;
+            transition: transform 0.3s;
+        }
+
+        .about-img img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Cards de personagens */
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(15, 20, 35, 0.75);
+            backdrop-filter: blur(6px);
+            border-radius: 32px;
+            padding: 28px 20px 25px;
+            width: 280px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #ffd96655;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #ffcd4a;
+            background: rgba(20, 28, 48, 0.9);
+        }
+
+        .card-icon {
+            font-size: 3.2rem;
+            color: #ffcd4a;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #cbd5ff;
+        }
+
+        /* Itens mitológicos (grid) */
+        .items-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .myth-item {
+            background: #0e121f;
+            border-radius: 20px;
+            padding: 20px 25px;
+            width: 210px;
+            text-align: center;
+            transition: 0.2s;
+            border-left: 4px solid #ffcd4a;
+        }
+
+        .myth-item i {
+            font-size: 2.5rem;
+            color: #f5b042;
+        }
+
+        .myth-item h4 {
+            margin: 12px 0 6px;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Timeline / Livros */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .book-entry {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 48px;
+            padding: 18px 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ffcd4a60;
+            transition: 0.2s;
+        }
+
+        .book-num {
+            background: #ffcd4a;
+            color: #0a0f1f;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            font-family: 'Cinzel', sans-serif;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .book-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .book-info p {
+            color: #bac8ff;
+        }
+
+        /* Frases / Quote */
+        .quote-section {
+            background: linear-gradient(115deg, #03101e, #041e2c);
+            text-align: center;
+            border-top: 2px solid #ffcd4a;
+            border-bottom: 2px solid #ffcd4a;
+            padding: 55px 20px;
+        }
+
+        .quote-text {
+            font-size: 1.7rem;
+            max-width: 850px;
+            margin: 0 auto;
+            font-style: italic;
+            font-weight: 400;
+            font-family: 'Cinzel', serif;
+            color: #ffe7aa;
+        }
+
+        .quote-author {
+            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        footer {
+            background: #02050c;
+            padding: 40px 0 20px;
+            border-top: 1px solid #ffcd4a30;
+            text-align: center;
+            color: #8695b5;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .social-links a {
+            color: #c0cbee;
+            transition: 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #ffcd4a;
+            transform: scale(1.1);
+        }
+
+        /* responsividade */
+        @media (max-width: 800px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .quote-text {
+                font-size: 1.2rem;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <i class="fas fa-bolt logo-icon"></i>
+                <span class="logo-text">Acampamento Meio-Sangue</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Início</a></li>
+                <li><a href="#sobre">História</a></li>
+                <li><a href="#personagens">Heróis</a></li>
+                <li><a href="#livros">Saga</a></li>
+                <li><a href="#mitologia">Mitologia</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Percy Jackson <span>O Filho do Mar</span></h1>
+                <p>Descubra o mundo dos deuses do Olimpo, monstros lendários e o herói que desafiou o destino. Caneta? Espada? Uma história épica de coragem, amizade e águas turbulentas.</p>
+                <div class="btn-group">
+                    <a href="#sobre" class="btn btn-primary">Explorar o Mito</a>
+                    <a href="#livros" class="btn btn-outline">Os Livros</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre / introdução -->
+        <section id="sobre" class="section">
+            <div class="container">
+                <h2 class="section-title">Quem é Percy Jackson?</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>Perseu "Percy" Jackson é um semideus grego moderno, filho de Poseidon, deus dos mares, e da mortal Sally Jackson. Diagnosticado com TDAH e dislexia — na verdade, reflexos de herói e mente preparada para grego antigo — Percy descobre sua verdadeira identidade aos 12 anos e é enviado ao Acampamento Meio-Sangue, um refúgio para filhos dos deuses.</p>
+                        <p>Ao longo das sagas <strong>Percy Jackson e os Olimpianos</strong> e <strong>Os Heróis do Olimpo</strong>, Percy enfrenta profecias sombrias, luta contra titãs e gigantes, e prova que lealdade e inteligência podem superar qualquer poder divino. Sua arma icônica: <strong>Contracórrente (Anaklusmos)</strong>, uma espada de bronze celestial que se transforma em caneta esferográfica.</p>
+                        <p>Com seus melhores amigos Annabeth Chase (filha de Atena) e Grover Underwood (sátiro), ele já salvou o Olimpo inúmeras vezes. Seu sarcasmo, coragem e determinação o transformaram em um dos maiores heróis da literatura jovem.</p>
+                    </div>
+                    <div class="about-img">
+                        <!-- imagem temática (ilustração conceitual, substituível) -->
+                        <img src="https://i.postimg.cc/7LyKLDM5/percy-illustration.jpg" alt="Percy Jackson com a espada Contracorrente" onerror="this.src='https://placehold.co/600x400/111927/ffcd4a?text=Percy+Jackson'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personagens principais -->
+        <section id="personagens" class="section" style="background: linear-gradient(180deg, #050a17, #02050c);">
+            <div class="container">
+                <h2 class="section-title">Principais Heróis & Aliados</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-water"></i></div>
+                        <div class="card-title">Percy Jackson</div>
+                        <div class="card-description">Semideus filho de Poseidon, controle sobre a água, domina cavalos-marinhos e comunica-se com criaturas marinhas. Leal e impulsivo.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-owl"></i></div>
+                        <div class="card-title">Annabeth Chase</div>
+                        <div class="card-description">Filha de Atena, estrategista brilhante, arquiteta do Olimpo. Seu conhecimento e coragem são fundamentais em todas as missões.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-tree"></i></div>
+                        <div class="card-title">Grover Underwood</div>
+                        <div class="card-description">Sátiro protetor, leal amigo de Percy. Busca o deus Pã e possui o poder da natureza e empatia.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-crown"></i></div>
+                        <div class="card-title">Luke Castellan</div>
+                        <div class="card-description">Herói trágico, filho de Hermes. Inimigo e vítima de Kronos, sua história representa redenção e escolhas difíceis.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-moon"></i></div>
+                        <div class="card-title">Nico di Angelo</div>
+                        <div class="card-description">Filho de Hades, domina as sombras e os mortos. Um viajante fantasma de grande poder e coração solitário.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Livros da Série -->
+        <section id="livros" class="section">
+            <div class="container">
+                <h2 class="section-title">A Saga & Os Livros</h2>
+                <div class="timeline">
+                    <div class="book-entry">
+                        <div class="book-num">1</div>
+                        <div class="book-info">
+                            <h3>O Ladrão de Raios</h3>
+                            <p>Percy é acusado de roubar o raio de Zeus e tem 10 dias para encontrar o verdadeiro ladrão e evitar uma guerra entre os deuses.</p>
+                        </div>
+                    </div>
+                    <div class="book-entry">
+                        <div class="book-num">2</div>
+                        <div class="book-info">
+                            <h3>O Mar de Monstros</h3>
+                            <p>O Acampamento Meio-Sangue está em perigo, e Percy parte em busca do lendário Velocino de Ouro para salvar a fronteira mágica.</p>
+                        </div>
+                    </div>
+                    <div class="book-entry">
+                        <div class="book-num">3</div>
+                        <div class="book-info">
+                            <h3>A Maldição do Titã</h3>
+                            <p>Annabeth é sequestrada, e Percy precisa evitar que a Titã Atlas desperte. Uma missão repleta de caças e revelações.</p>
+                        </div>
+                    </div>
+                    <div class="book-entry">
+                        <div class="book-num">4</div>
+                        <div class="book-info">
+                            <h3>A Batalha do Labirinto</h3>
+                            <p>O labirinto de Dédalo ameaça o acampamento. Percy e seus amigos entram no corredor mortal para enfrentar o exército de Kronos.</p>
+                        </div>
+                    </div>
+                    <div class="book-entry">
+                        <div class="book-num">5</div>
+                        <div class="book-info">
+                            <h3>O Último Olimpiano</h3>
+                            <p>O confronto final contra o Titã Kronos e suas forças. A profecia se cumpre e o destino do Olimpo está nas mãos de Percy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <span style="background: #1e253e; padding: 8px 20px; border-radius: 60px; font-size: 0.9rem;"><i class="fas fa-book-open"></i> Série complementar: Os Heróis do Olimpo, As Provações de Apolo, Magnus Chase</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mitologia e elementos -->
+        <section id="mitologia" class="section" style="background: #030913;">
+            <div class="container">
+                <h2 class="section-title">Objetos & Criaturas do Universo</h2>
+                <div class="items-grid">
+                    <div class="myth-item">
+                        <i class="fas fa-pen-fancy"></i>
+                        <h4>Contracorrente</h4>
+                        <p>Espada de bronze celestial que só aparece para heróis. Forma de caneta.</p>
+                    </div>
+                    <div class="myth-item">
+                        <i of class="fas fa-shield-alt"></i>
+                        <h4>Égide</h4>
+                        <p>Escudo de Atena com a cabeça da Medusa, aterroriza inimigos.</p>
+                    </div>
+                    <div class="myth-item">
+                        <i class="fas fa-dragon"></i>
+                        <h4>Hidra de Lerna</h4>
+                        <p>Monstro que dobra cabeças quando cortadas — Percy enfrentou com engenhosidade.</p>
+                    </div>
+                    <div class="myth-item">
+                        <i class="fas fa-horse"></i>
+                        <h4>Pégaso</h4>
+                        <p>Cavalos alados usados pelos semideuses em batalhas aéreas.</p>
+                    </div>
+                    <div class="myth-item">
+                        <i class="fas fa-crown"></i>
+                        <h4>Coroa de Ptolomeu</h4>
+                        <p>Artefato de poder nos labirintos, ligado à magia egípcia/gregada.</p>
+                    </div>
+                    <div class="myth-item">
+                        <i class="fas fa-feather-alt"></i>
+                        <h4>Íris</h4>
+                        <p>Mensagens por arco-íris, usado para se comunicar à distância.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frase icônica -->
+        <div class="quote-section">
+            <div class="quote-text">“O que importa não é de onde você vem, mas quem você decide ser. E eu decido ser um herói.”</div>
+            <div class="quote-author">— Percy Jackson, O Ladrão de Raios</div>
+            <div style="margin-top: 25px;"><i class="fas fa-trident" style="font-size: 2rem; opacity: 0.7;"></i></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Fã page"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Comunidade"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Livros"><i class="fab fa-goodreads-g"></i></a>
+                <a href="#" aria-label="Rick Riordan"><i class="fas fa-book"></i></a>
+            </div>
+            <p>© 2025 - Acampamento Meio-Sangue | Homenagem a Rick Riordan e ao universo de Percy Jackson. Todos os direitos aos respectivos autores.</p>
+            <p style="margin-top: 15px; font-size: 0.8rem;"><i class="fas fa-water"></i> A maré sempre traz esperança. Que os deuses te protejam.</p>
+        </div>
+    </footer>
+
+    <!-- pequeno script para smooth scroll e ativar links -->
+    <script>
+        (function() {
+            const links = document.querySelectorAll('.nav-links a, .btn-primary, .btn-outline');
+            for (let link of links) {
+                link.addEventListener('click', function(e) {
+                    const hash = this.getAttribute('href');
+                    if (hash && hash.startsWith('#')) {
+                        const targetElement = document.querySelector(hash);
+                        if (targetElement) {
+                            e.preventDefault();
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            history.pushState(null, null, hash);
+                        }
+                    }
+                });
+            }
+            // marca link ativo no scroll
+            const sections = document.querySelectorAll('section[id]');
+            function highlightNav() {
+                let scrollPos = window.scrollY + 100;
+                sections.forEach(section => {
+                    const top = section.offsetTop;
+                    const bottom = top + section.offsetHeight;
+                    if (scrollPos >= top && scrollPos < bottom) {
+                        const currentId = section.getAttribute('id');
+                        document.querySelectorAll('.nav-links a').forEach(a => {
+                            a.classList.remove('active');
+                            if (a.getAttribute('href') === '#' + currentId) {
+                                a.classList.add('active');
+                            } else if (currentId === null && a.getAttribute('href') === '#') {
+                                a.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+            window.addEventListener('scroll', highlightNav);
+            highlightNav();
+        })();
+    </script>
+</body>
+</html>
